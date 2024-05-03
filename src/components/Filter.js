@@ -5,6 +5,7 @@ import {
   MenuItem,
   FormControl,
   InputLabel,
+  Grid,
 } from "@mui/material";
 
 function Filter({ filters, setFilters }) {
@@ -18,64 +19,80 @@ function Filter({ filters, setFilters }) {
   };
 
   return (
-    <div>
-      <TextField
-        name="jobRole"
-        value={filters.jobRole}
-        onChange={handleChange}
-        label="Job Role"
-        variant="outlined"
-      />
-      <TextField
-        name="minExperience"
-        value={filters.minExperience}
-        onChange={handleChange}
-        label="Min Experience"
-        variant="outlined"
-        type="number"
-        InputProps={{ inputProps: { min: 0 } }}
-      />
-      <TextField
-        name="location"
-        value={filters.location}
-        onChange={handleChange}
-        label="Location"
-        variant="outlined"
-      />
-      <FormControl variant="outlined">
-        <InputLabel>Tech Stack</InputLabel>
-        <Select
-          name="techStack"
-          value={filters.techStack}
+    <Grid container spacing={2}>
+      <Grid item xs={12} md={6} lg={4}>
+        <TextField
+          name="jobRole"
+          value={filters.jobRole}
           onChange={handleChange}
-          label="Tech Stack"
-        >
-          <MenuItem value="JavaScript">JavaScript</MenuItem>
-          <MenuItem value="Python">Python</MenuItem>
-        </Select>
-      </FormControl>
-      <FormControl variant="outlined">
-        <InputLabel>Remote/On Site</InputLabel>
-        <Select
+          label="Job Role"
+          variant="outlined"
+          fullWidth
+        />
+      </Grid>
+      <Grid item xs={12} md={6} lg={4}>
+        <TextField
+          name="minExperience"
+          value={filters.minExperience}
+          onChange={handleChange}
+          label="Min Experience"
+          variant="outlined"
+          type="number"
+          InputProps={{ inputProps: { min: 0 } }}
+          fullWidth
+        />
+      </Grid>
+      <Grid item xs={12} md={6} lg={4}>
+        <TextField
           name="location"
           value={filters.location}
           onChange={handleChange}
-          label="Remote/On-Site"
-        >
-          <MenuItem value="remote">Remote</MenuItem>
-          <MenuItem value="onsite">On Site</MenuItem>
-        </Select>
-      </FormControl>
-      <TextField
-        name="minBasePay"
-        value={filters.minBasePay}
-        onChange={handleChange}
-        label="Min Base Pay"
-        variant="outlined"
-        type="number"
-        InputProps={{ inputProps: { min: 0 } }}
-      />
-    </div>
+          label="Location"
+          variant="outlined"
+          fullWidth
+        />
+      </Grid>
+      <Grid item xs={12} md={6} lg={4}>
+        <FormControl variant="outlined" fullWidth>
+          <InputLabel>Tech Stack</InputLabel>
+          <Select
+            name="techStack"
+            value={filters.techStack}
+            onChange={handleChange}
+            label="Tech Stack"
+          >
+            <MenuItem value="JavaScript">JavaScript</MenuItem>
+            <MenuItem value="Python">Python</MenuItem>
+          </Select>
+        </FormControl>
+      </Grid>
+      <Grid item xs={12} md={6} lg={4}>
+        <FormControl variant="outlined" fullWidth>
+          <InputLabel>Remote/On Site</InputLabel>
+          <Select
+            name="location"
+            value={filters.location}
+            onChange={handleChange}
+            label="Remote/On-Site"
+          >
+            <MenuItem value="remote">Remote</MenuItem>
+            <MenuItem value="onsite">On Site</MenuItem>
+          </Select>
+        </FormControl>
+      </Grid>
+      <Grid item xs={12} md={6} lg={4}>
+        <TextField
+          name="minBasePay"
+          value={filters.minBasePay}
+          onChange={handleChange}
+          label="Min Base Pay"
+          variant="outlined"
+          type="number"
+          InputProps={{ inputProps: { min: 0 } }}
+          fullWidth
+        />
+      </Grid>
+    </Grid>
   );
 }
 

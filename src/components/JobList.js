@@ -12,24 +12,32 @@ function JobList({ jobs, loading, error, filters }) {
     });
   });
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
   return (
     <div>
-      {error ? (
-        <p>Something Went Wrong</p>
-      ) : loading ? (
-        <p>Loading...</p>
+      {loading ? (
+        <div className="loading_spinner_div">
+          <img src="/loadingSpinner.gif" alt="loading spinner" />
+        </div>
+      ) : error ? (
+        <div className="something_went_wrong_div">
+          <div>
+            <img src="/somethingWentWrong.png" alt="something went wrong" />
+          </div>
+          <p className="no_job_found_text">Something Went Wrong!</p>
+        </div>
       ) : (
         <>
           {filteredJobs.length === 0 ? (
-            <p>No Jobs Found</p>
+            <div className="something_went_wrong_div">
+              <div>
+                <img src="/somethingWentWrong.png" alt="something went wrong" />
+              </div>
+              <p className="no_job_found_text">No Jobs Found!</p>
+            </div>
           ) : (
             <Grid container spacing={2}>
               {filteredJobs?.map((job) => (
-                <Grid key={job.jdUid} item xs={12} sm={6} md={4}>
+                <Grid key={job.jdUid} item xs={12} sm={6} md={3}>
                   <JobCard job={job} />
                 </Grid>
               ))}

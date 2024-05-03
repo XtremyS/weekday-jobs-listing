@@ -3,6 +3,7 @@ import "./jobCard.css";
 import BoltIcon from "@mui/icons-material/Bolt";
 import WineBarIcon from "@mui/icons-material/WineBar";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
+import { capitalizeFirstLetter } from "../../utils/helper function/stringFormatter";
 
 function JobCard({ job }) {
   return (
@@ -14,15 +15,19 @@ function JobCard({ job }) {
         </p>
         <div className="company-info">
           <div>
-            <img src={job.logoUrl} alt=""></img>
+            <img src={job.logoUrl} alt={`${job.companyName}`} />
           </div>
           <div className="job-des">
             <h3 className="company-name">{job.companyName}</h3>
             <p className="job-role">
-              {job.jobRole ? job.jobRole : "Not Available"}
+              {job.jobRole
+                ? capitalizeFirstLetter(job.jobRole)
+                : "Not Available"}
             </p>
             <p className="location">
-              {job.location ? job.location : "Not Available"}
+              {job.location
+                ? capitalizeFirstLetter(job.location)
+                : "Not Available"}
             </p>
           </div>
         </div>
