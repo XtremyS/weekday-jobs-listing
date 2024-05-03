@@ -31,7 +31,7 @@ function JobCard({ job }) {
             </p>
           </div>
         </div>
-        <p className="salary-currancy-code">
+        <p className="salary-currency-code">
           Estimated Salary: {job.salaryCurrencyCode === "USD" ? "$" : "₹"}
           {job.minJdSalary ? job.minJdSalary : "Not Specified"} -{" "}
           {job.salaryCurrencyCode === "USD" ? "$" : "₹"}
@@ -50,12 +50,20 @@ function JobCard({ job }) {
           {job.minExp ? `${job.minExp} Years` : "Not Specified"}
         </p>
 
-        <button className="apply-btn">
-          <BoltIcon style={{ color: "#f3cc49" }} />
-          Easy Apply
-        </button>
-        <br />
-        <button className="refferal-btn">Unlock Referral ask</button>
+        <div className="apply_btn_container">
+          <div>
+            <a href={job.jdLink} target="_blank" rel="noreferrer">
+              <button className="apply-btn">
+                <BoltIcon style={{ color: "#f3cc49" }} />
+                Easy Apply
+              </button>
+            </a>
+          </div>
+
+          <div>
+            <button className="referral-btn">Unlock referral ask</button>
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -10,6 +10,7 @@ function App() {
     minExp: "",
     maxExp: "",
     jobRole: "",
+    companyName: "",
     location: "",
     maxJdSalary: "",
     minJdSalary: "",

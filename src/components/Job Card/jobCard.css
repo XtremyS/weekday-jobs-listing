@@ -46,7 +46,7 @@
   font-weight: 600;
 }
 
-.salary-currancy-code {
+.salary-currency-code {
   color: #4d5869;
   font-weight: 600;
   font-size: 17px;
@@ -92,8 +92,14 @@
   color: #212121;
 }
 
+.apply_btn_container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 .apply-btn,
-.refferal-btn {
+.referral-btn {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -107,9 +113,10 @@
 
 .apply-btn {
   background-color: #54efc3;
+  cursor: pointer;
 }
 
-.refferal-btn {
+.referral-btn {
   background-color: #4943d9;
   color: white;
 }

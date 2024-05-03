@@ -20,7 +20,17 @@ function Filter({ filters, setFilters }) {
 
   return (
     <Grid container spacing={2}>
-      <Grid item xs={12} md={6} lg={4}>
+      <Grid item xs={12} md={6} lg={3}>
+        <TextField
+          name="companyName"
+          value={filters.companyName}
+          onChange={handleChange}
+          label="Company Name"
+          variant="outlined"
+          fullWidth
+        />
+      </Grid>
+      <Grid item xs={12} md={6} lg={3}>
         <TextField
           name="jobRole"
           value={filters.jobRole}
@@ -30,10 +40,10 @@ function Filter({ filters, setFilters }) {
           fullWidth
         />
       </Grid>
-      <Grid item xs={12} md={6} lg={4}>
+      <Grid item xs={12} md={6} lg={3}>
         <TextField
-          name="minExperience"
-          value={filters.minExperience}
+          name="minExp"
+          value={filters.minExp}
           onChange={handleChange}
           label="Min Experience"
           variant="outlined"
@@ -42,7 +52,19 @@ function Filter({ filters, setFilters }) {
           fullWidth
         />
       </Grid>
-      <Grid item xs={12} md={6} lg={4}>
+      <Grid item xs={12} md={6} lg={3}>
+        <TextField
+          name="maxExp"
+          value={filters.maxExp}
+          onChange={handleChange}
+          label="Max Experience"
+          variant="outlined"
+          type="number"
+          InputProps={{ inputProps: { min: 0 } }}
+          fullWidth
+        />
+      </Grid>
+      <Grid item xs={12} md={6} lg={3}>
         <TextField
           name="location"
           value={filters.location}
@@ -52,7 +74,7 @@ function Filter({ filters, setFilters }) {
           fullWidth
         />
       </Grid>
-      <Grid item xs={12} md={6} lg={4}>
+      <Grid item xs={12} md={6} lg={3}>
         <FormControl variant="outlined" fullWidth>
           <InputLabel>Tech Stack</InputLabel>
           <Select
@@ -61,12 +83,16 @@ function Filter({ filters, setFilters }) {
             onChange={handleChange}
             label="Tech Stack"
           >
-            <MenuItem value="JavaScript">JavaScript</MenuItem>
-            <MenuItem value="Python">Python</MenuItem>
+            <MenuItem value="javascirpt">JavaScript</MenuItem>
+            <MenuItem value="python">Python</MenuItem>
+            <MenuItem value="react">React JS</MenuItem>
+            <MenuItem value="nextjs">Next JS</MenuItem>
+            <MenuItem value="html">HTML</MenuItem>
+            <MenuItem value="css">CSS</MenuItem>
           </Select>
         </FormControl>
       </Grid>
-      <Grid item xs={12} md={6} lg={4}>
+      <Grid item xs={12} md={6} lg={3}>
         <FormControl variant="outlined" fullWidth>
           <InputLabel>Remote/On Site</InputLabel>
           <Select
@@ -80,12 +106,24 @@ function Filter({ filters, setFilters }) {
           </Select>
         </FormControl>
       </Grid>
-      <Grid item xs={12} md={6} lg={4}>
+      <Grid item xs={12} md={6} lg={3}>
         <TextField
-          name="minBasePay"
-          value={filters.minBasePay}
+          name="minJdSalary"
+          value={filters.minJdSalary}
           onChange={handleChange}
           label="Min Base Pay"
+          variant="outlined"
+          type="number"
+          InputProps={{ inputProps: { min: 0 } }}
+          fullWidth
+        />
+      </Grid>
+      <Grid item xs={12} md={6} lg={3}>
+        <TextField
+          name="maxJdSalary"
+          value={filters.maxJdSalary}
+          onChange={handleChange}
+          label="Max Base Pay"
           variant="outlined"
           type="number"
           InputProps={{ inputProps: { min: 0 } }}

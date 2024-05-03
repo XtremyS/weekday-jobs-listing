@@ -12,6 +12,8 @@ function JobList({ jobs, loading, error, filters }) {
     });
   });
 
+  console.log(filteredJobs);
+
   return (
     <div>
       {loading ? (
