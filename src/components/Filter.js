@@ -52,7 +52,6 @@ function Filter({ filters, setFilters }) {
         >
           <MenuItem value="JavaScript">JavaScript</MenuItem>
           <MenuItem value="Python">Python</MenuItem>
-          {/* Add more tech stack options here */}
         </Select>
       </FormControl>
       <FormControl variant="outlined">
@@ -65,10 +64,8 @@ function Filter({ filters, setFilters }) {
         >
           <MenuItem value="remote">Remote</MenuItem>
           <MenuItem value="onsite">On Site</MenuItem>
-          {/* Add more tech stack options here */}
         </Select>
       </FormControl>
-
       <TextField
         name="minBasePay"
         value={filters.minBasePay}

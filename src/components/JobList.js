@@ -1,12 +1,10 @@
 import React from "react";
-import JobCard from "./JobCards";
+import JobCard from "./Job Card/JobCards";
+import { Grid } from "@mui/material";
 
 function JobList({ jobs, loading, error, filters }) {
   const filteredJobs = jobs?.filter((job) => {
-    // Implement filtering logic based on the provided filters
     return Object.keys(filters).every((filterKey) => {
-      // Check if the filter value is empty or if the job matches the filter
-      // Handle null or undefined values for job[filterKey]
       return (
         filters[filterKey] === "" ||
         (job[filterKey] && job[filterKey].includes(filters[filterKey]))
@@ -15,7 +13,7 @@ function JobList({ jobs, loading, error, filters }) {
   });
 
   if (loading) {
-    return <div>Loading...</div>; // Display loading indicator
+    return <div>Loading...</div>;
   }
 
   return (
@@ -29,11 +27,13 @@ function JobList({ jobs, loading, error, filters }) {
           {filteredJobs.length === 0 ? (
             <p>No Jobs Found</p>
           ) : (
-            <>
+            <Grid container spacing={2}>
               {filteredJobs?.map((job) => (
-                <JobCard key={job.jdUid} job={job} />
+                <Grid key={job.jdUid} item xs={12} sm={6} md={4}>
+                  <JobCard job={job} />
+                </Grid>
               ))}
-            </>
+            </Grid>
           )}
         </>
       )}

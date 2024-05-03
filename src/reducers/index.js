@@ -1,4 +1,3 @@
-// Redux reducer
 const initialState = {
   jobs: [],
   loading: false,
