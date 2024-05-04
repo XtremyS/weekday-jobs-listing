@@ -9,8 +9,6 @@ function JobList({ loading, error, filters }) {
   const [loadingMore, setLoadingMore] = useState(false);
   const [allJobs, setAllJobs] = useState([]);
 
-  console.log(loading);
-
   useEffect(() => {
     setAllJobs([]);
     setOffset(0);
@@ -53,18 +51,24 @@ function JobList({ loading, error, filters }) {
 
   const filteredJobs = allJobs?.filter((job) => {
     return Object.keys(filters).every((filterKey) => {
-      console.log(
-        filters[filterKey],
-        "FILTER KEY",
-        job[filterKey],
-        "JOBS FILTER KEY"
+      const jobValue = job[filterKey];
+      if (filters[filterKey] === "") {
+        return true;
+      }
+      const hasNullOrUndefined = Object.values(job).some(
+        (value) => value === null || value === undefined
       );
-      return (
-        filters[filterKey] === "" ||
-        (job[filterKey] && job[filterKey].includes(filters[filterKey]))
-      );
+      if (hasNullOrUndefined) {
+        return false;
+      }
+      if (!Array.isArray(jobValue)) {
+        return jobValue?.toString()?.includes(filters[filterKey]);
+      }
+      return jobValue.includes(filters[filterKey]);
     });
   });
+
+  console.log(filteredJobs);
 
   return (
     <div>
@@ -75,7 +79,11 @@ function JobList({ loading, error, filters }) {
       ) : error ? (
         <div className="something_went_wrong_div">
           <div>
-            <img src="/somethingWentWrong.png" alt="something went wrong" />
+            <img
+              className="something_went_wrong_img"
+              src="/somethingWentWrong.png"
+              alt="something went wrong"
+            />
           </div>
           <p className="no_job_found_text">Something Went Wrong!</p>
         </div>
@@ -84,14 +92,18 @@ function JobList({ loading, error, filters }) {
           {filteredJobs?.length === 0 ? (
             <div className="something_went_wrong_div">
               <div>
-                <img src="/somethingWentWrong.png" alt="something went wrong" />
+                <img
+                  className="something_went_wrong_img"
+                  src="/somethingWentWrong.png"
+                  alt="something went wrong"
+                />
               </div>
               <p className="no_job_found_text">No Jobs Found!</p>
             </div>
           ) : (
             <Grid container spacing={2}>
-              {filteredJobs?.map((job) => (
-                <Grid key={job.jdUid} item xs={12} sm={6} md={3}>
+              {filteredJobs?.map((job, index) => (
+                <Grid key={index} item xs={12} sm={6} md={3}>
                   <JobCard job={job} />
                 </Grid>
               ))}

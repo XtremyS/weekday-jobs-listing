@@ -8,13 +8,10 @@ function App() {
   const dispatch = useDispatch();
   const [filters, setFilters] = useState({
     minExp: "",
-    maxExp: "",
     jobRole: "",
     companyName: "",
     location: "",
-    maxJdSalary: "",
     minJdSalary: "",
-    salaryCurrencyCode: "",
     remoteOnSite: "",
     techStack: "",
     role: "",

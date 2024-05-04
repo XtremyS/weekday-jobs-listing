@@ -8,6 +8,7 @@
   height: 90vh;
   align-items: center;
 }
+
 .something_went_wrong_div {
   display: flex;
   justify-content: center;
@@ -16,7 +17,12 @@
   align-items: center;
 }
 
+.something_went_wrong_img {
+  width: 500px;
+}
+
 .no_job_found_text {
+  margin: 0;
   color: #434343;
   font-size: 24px;
 }
