@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchJobs } from "./actions";
 import JobList from "./components/JobList";
-import Filter from "./components/Filter";
+import Filter from "./components/Filters/Filter";
 
 function App() {
   const dispatch = useDispatch();
@@ -19,7 +19,7 @@ function App() {
   });
 
   useEffect(() => {
-    dispatch(fetchJobs());
+    dispatch(fetchJobs(0));
   }, [dispatch]);
 
   const loading = useSelector((state) => state.loading);

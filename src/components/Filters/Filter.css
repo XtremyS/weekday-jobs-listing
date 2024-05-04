@@ -1,0 +1,17 @@
+.reset-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  border-radius: 8px;
+  border: none;
+  font-weight: 700;
+  background-color: #54efc3;
+  cursor: pointer;
+}
+.reset-btn:hover {
+  background-color: #04db9e;
+  cursor: pointer;
+  border: none;
+  font-weight: 700;
+}

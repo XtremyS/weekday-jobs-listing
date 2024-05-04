@@ -52,19 +52,31 @@ function JobList({ loading, error, filters }) {
   const filteredJobs = allJobs?.filter((job) => {
     return Object.keys(filters).every((filterKey) => {
       const jobValue = job[filterKey];
-      if (filters[filterKey] === "") {
+      const filterValue = filters[filterKey];
+
+      if (filterValue === "") {
         return true;
       }
+
       const hasNullOrUndefined = Object.values(job).some(
         (value) => value === null || value === undefined
       );
       if (hasNullOrUndefined) {
         return false;
       }
-      if (!Array.isArray(jobValue)) {
-        return jobValue?.toString()?.includes(filters[filterKey]);
+
+      if (typeof jobValue === "number" && typeof filterValue === "number") {
+        return jobValue === filterValue;
       }
-      return jobValue.includes(filters[filterKey]);
+
+      if (Array.isArray(jobValue)) {
+        return jobValue.includes(filterValue);
+      }
+
+      return jobValue
+        ?.toString()
+        ?.toLowerCase()
+        ?.includes(filterValue.toLowerCase());
     });
   });
 
@@ -101,13 +113,15 @@ function JobList({ loading, error, filters }) {
               <p className="no_job_found_text">No Jobs Found!</p>
             </div>
           ) : (
-            <Grid container spacing={2}>
-              {filteredJobs?.map((job, index) => (
-                <Grid key={index} item xs={12} sm={6} md={3}>
-                  <JobCard job={job} />
-                </Grid>
-              ))}
-            </Grid>
+            <div className="main_container_card_section">
+              <Grid container spacing={2}>
+                {filteredJobs?.map((job, index) => (
+                  <Grid key={index} item xs={12} sm={6} md={3}>
+                    <JobCard job={job} />
+                  </Grid>
+                ))}
+              </Grid>
+            </div>
           )}
           {loadingMore && (
             <div className="loading_spinner_div">

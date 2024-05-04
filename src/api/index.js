@@ -1,4 +1,4 @@
-export const fetchJobsAPI = async (offset) => {
+export const fetchJobsAPI = async (offset = 0) => {
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
 

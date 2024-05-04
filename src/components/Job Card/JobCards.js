@@ -36,7 +36,7 @@ function JobCard({ job }) {
           {job.minJdSalary ? job.minJdSalary : "Not Specified"} -{" "}
           {job.salaryCurrencyCode === "USD" ? "$" : "₹"}
           {job.maxJdSalary ? job.maxJdSalary : "Not Specified"} LPA
-          <CheckBoxIcon style={{ color: "#01bd00" }} />
+          <CheckBoxIcon style={{ color: "#01bd00", margin: "2px" }} />
         </p>
         <p className="about-company">About Company:</p>
         <p className="about-us">About us</p>
@@ -52,7 +52,12 @@ function JobCard({ job }) {
 
         <div className="apply_btn_container">
           <div>
-            <a href={job.jdLink} target="_blank" rel="noreferrer">
+            <a
+              href={job.jdLink}
+              target="_blank"
+              rel="noreferrer"
+              className="links"
+            >
               <button className="apply-btn">
                 <BoltIcon style={{ color: "#f3cc49" }} />
                 Easy Apply
@@ -61,7 +66,10 @@ function JobCard({ job }) {
           </div>
 
           <div>
-            <button className="referral-btn">Unlock referral ask</button>
+            <button className="referral-btn">
+              <img src="/profile.webp" />
+              Unlock referral asks
+            </button>
           </div>
         </div>
       </div>
