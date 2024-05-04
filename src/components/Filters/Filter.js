@@ -9,6 +9,7 @@ import {
   Button,
 } from "@mui/material";
 import "./Filter.css";
+
 function Filter({ filters, setFilters }) {
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;

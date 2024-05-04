@@ -15,7 +15,7 @@ function JobCard({ job }) {
         </p>
         <div className="company-info">
           <div>
-            <img src={job.logoUrl} alt={`${job.companyName}`} />
+            <img src={job.logoUrl} alt={job.companyName} />
           </div>
           <div className="job-des">
             <h3 className="company-name">{job.companyName}</h3>
