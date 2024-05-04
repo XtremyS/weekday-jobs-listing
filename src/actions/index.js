@@ -1,4 +1,3 @@
-// Action creators for Redux
 import { fetchJobsAPI } from "../api";
 
 export const fetchJobs = () => async (dispatch) => {

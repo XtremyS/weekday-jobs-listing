@@ -1,18 +1,70 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import JobCard from "./Job Card/JobCards";
+import { fetchJobsAPI } from "../api";
 import { Grid } from "@mui/material";
 
-function JobList({ jobs, loading, error, filters }) {
-  const filteredJobs = jobs?.filter((job) => {
+function JobList({ loading, error, filters }) {
+  const [offset, setOffset] = useState(0);
+  const [hasMore, setHasMore] = useState(true);
+  const [loadingMore, setLoadingMore] = useState(false);
+  const [allJobs, setAllJobs] = useState([]);
+
+  console.log(loading);
+
+  useEffect(() => {
+    setAllJobs([]);
+    setOffset(0);
+    setHasMore(true);
+    fetchJobs(0);
+  }, []);
+
+  const fetchJobs = async (offset) => {
+    try {
+      const data = await fetchJobsAPI(offset);
+      setAllJobs((prevJobs) => [...prevJobs, ...data.jobs]);
+      setHasMore(data.hasMore);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleScroll = () => {
+    if (
+      window.innerHeight + document.documentElement.scrollTop ===
+        document.documentElement.offsetHeight &&
+      !loading &&
+      !loadingMore &&
+      hasMore
+    ) {
+      setLoadingMore(true);
+      fetchJobs(offset + 10).finally(() => {
+        setLoadingMore(false);
+      });
+      setOffset((prevOffset) => prevOffset + 10);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [loading, loadingMore, hasMore]);
+
+  const filteredJobs = allJobs?.filter((job) => {
     return Object.keys(filters).every((filterKey) => {
+      console.log(
+        filters[filterKey],
+        "FILTER KEY",
+        job[filterKey],
+        "JOBS FILTER KEY"
+      );
       return (
         filters[filterKey] === "" ||
         (job[filterKey] && job[filterKey].includes(filters[filterKey]))
       );
     });
   });
-
-  console.log(filteredJobs);
 
   return (
     <div>
@@ -29,7 +81,7 @@ function JobList({ jobs, loading, error, filters }) {
         </div>
       ) : (
         <>
-          {filteredJobs.length === 0 ? (
+          {filteredJobs?.length === 0 ? (
             <div className="something_went_wrong_div">
               <div>
                 <img src="/somethingWentWrong.png" alt="something went wrong" />
@@ -44,6 +96,11 @@ function JobList({ jobs, loading, error, filters }) {
                 </Grid>
               ))}
             </Grid>
+          )}
+          {loadingMore && (
+            <div className="loading_spinner_div">
+              <img src="/loadingSpinner.gif" alt="loading spinner" />
+            </div>
           )}
         </>
       )}

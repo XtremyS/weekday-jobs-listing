@@ -25,14 +25,13 @@ function App() {
     dispatch(fetchJobs());
   }, [dispatch]);
 
-  const jobs = useSelector((state) => state.jobs);
   const loading = useSelector((state) => state.loading);
   const error = useSelector((state) => state.error);
 
   return (
     <div className="App">
       <Filter filters={filters} setFilters={setFilters} />
-      <JobList jobs={jobs} filters={filters} loading={loading} error={error} />
+      <JobList filters={filters} loading={loading} error={error} />
     </div>
   );
 }

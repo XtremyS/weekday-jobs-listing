@@ -1,11 +1,10 @@
-// API function to fetch jobs data
-export const fetchJobsAPI = async () => {
+export const fetchJobsAPI = async (offset) => {
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
 
   const body = JSON.stringify({
-    limit: 100,
-    offset: 0,
+    limit: 10,
+    offset: offset,
   });
 
   const requestOptions = {
@@ -22,7 +21,10 @@ export const fetchJobsAPI = async () => {
 
     if (response.status === 200) {
       const data = await response.json();
-      return data;
+      return {
+        jobs: data?.jdList,
+        hasMore: data?.jdList?.length > 0,
+      };
     }
   } catch (error) {
     console.error(error);
